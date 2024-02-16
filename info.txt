@@ -1,0 +1,7 @@
+versio endpoint
+parametrit vuosi, viikkonumero,
+https://unisafka.fi/static/json/2024/7/v.json
+
+varsinainen menu endpoint:
+parametrit vuosi, viikkonumero, versionumer, viikonpäivä
+https://unisafka.fi/static/json/2024/7/141/pe.json
