@@ -1,16 +1,19 @@
-// lunchMenuChecker.cpp
 #include "foodie.h"
+#include <array>
 #include <ctime>
-#include <iostream>
+#include <string>
+
 using namespace std;
 
-string getMenuUrl(string year, string weekNumber) {
+const array<string, 7> WeekDays = {"su", "ma", "ti", "ke", "to", "pe", "la"};
+
+string getVersionUrl(string year, string weekNumber) {
   return "https://unisafka.fi/static/json/" + year + "/" + weekNumber +
          "/v.json";
 }
 
-string getVersionUrl(const string &year, const string &weekNumber,
-                     const string &version, const string &weekDay) {
+string getMenuUrl(const string &year, const string &weekNumber,
+                  const string &version, const string &weekDay) {
   return "https://unisafka.fi/static/json/" + year + "/" + weekNumber + "/" +
          version + "/" + weekDay + ".json";
 }
@@ -19,12 +22,14 @@ void LunchMenuChecker::fetchMenu() {
   time_t t = time(nullptr);
   tm *const pTInfo = localtime(&t);
 
-  auto year = pTInfo->tm_year;
+  int year = pTInfo->tm_year;
 
-  auto weeDay = pTInfo->tm_wday;
+  string weekDay = WeekDays.at(pTInfo->tm_wday);
 
-  cout << "Fetching lunch menu..." << endl;
-  // Add your fetching and parsing logic here
+  int weekNum = pTInfo->tm_yday / 7 + 1;
+
+  string vUrl = getVersionUrl(to_string(year), to_string(weekNum));
+  auto version = "";
+  string menuUrl =
+      getMenuUrl(to_string(year), to_string(weekNum), version, weekDay);
 }
-
-// You can add more function definitions related to lunch menu checking here
