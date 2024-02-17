@@ -3,7 +3,7 @@
 
 class LunchMenuChecker {
 public:
-  void fetchMenu();
+  void fetchMenu(int argc, char *args[]);
 };
 
 #endif
